@@ -33,6 +33,6 @@ public class EchoServer {
             System.out.println("We caught an unexpected exception! OWO");
             System.err.println(ioe);
         }
-        
+
     }
 }

@@ -3,7 +3,7 @@ import java.net.*;
 import java.io.*;
 
 public class EchoServer {
-    public static final int portNum = 6103;
+    public static final int portNum = 6013;
 
     public static void main(String[] args) {
         try {
@@ -14,15 +14,22 @@ public class EchoServer {
             while (true) {
                 // Wait until someone connects
                 Socket client = socket.accept();
-                System.out.println("Got a request!");
+                //System.out.println("Got a request!");
 
                 // construct a writer so we can write to the socket,
                 // thereby sending something back to the client.
-                PrintWriter writer = new PrintWriter(client.getOutputStream(), true);
-
+                OutputStream writer = client.getOutputStream();
+                while (true) {
+                    int temp = client.getInputStream().read();
+                    if(temp == -1) {
+                        break;
+                    }
+                    else {
+                        writer.write(temp);
+                    }
+                }
                 // Send current date back
 
-                writer.println(new java.util.Date().toString());
 
                 // Close it politely like you should with sockets and doors
                 client.close();

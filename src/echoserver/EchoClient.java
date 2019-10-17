@@ -3,7 +3,7 @@ import java.net.*;
 import java.io.*;
 
 public class EchoClient {
-    public static final int portNum = 6103;
+    public static final int portNum = 6013;
 
     public static void main(String[] args) {
         String server;
@@ -17,17 +17,21 @@ public class EchoClient {
         try {
             // connect to server
             Socket socket = new Socket(server, portNum);
+            OutputStream out = socket.getOutputStream();
 
             // get inputstream
             InputStream inputStream = socket.getInputStream();
-            BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
 
-            // print input
-            String line;
-            while ((line = reader.readLine()) != null) {
-                System.out.println(line);
+            int temp;
+            int line;
+            while ((line = System.in.read()) != -1) {
+                out.write(line);
+                temp = inputStream.read();
+                System.out.print(temp);
+
             }
-
+            out.flush();
+            System.out.flush();
             //close socket
 
             socket.close();

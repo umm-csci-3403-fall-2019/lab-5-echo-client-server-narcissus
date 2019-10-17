@@ -28,8 +28,6 @@ public class EchoServer {
                         writer.write(temp);
                     }
                 }
-                // Send current date back
-
 
                 // Close it politely like you should with sockets and doors
                 client.close();

@@ -27,7 +27,7 @@ public class EchoClient {
             while ((line = System.in.read()) != -1) {
                 out.write(line);
                 temp = inputStream.read();
-                System.out.print(temp);
+                System.out.write(temp);
 
             }
             out.flush();
